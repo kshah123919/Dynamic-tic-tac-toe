@@ -10,6 +10,11 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
+// ✅ FIX ADDED (for "Cannot GET /")
+app.get('/', (req, res) => {
+  res.send("🚀 Backend is running!");
+});
+
 // Initialize Gemini
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
@@ -43,7 +48,7 @@ app.post('/api/suggest', async (req, res) => {
 
     const result = await model.generateContent(prompt);
     const text = (await result.response).text();
-    
+
     res.json({ suggestion: text });
   } catch (error) {
     console.error("Gemini API Suggest Error:", error.message);
@@ -53,7 +58,6 @@ app.post('/api/suggest', async (req, res) => {
 
 /**
  * (Optional but useful) API Endpoint: Explain Result
- * Returns an explanation of the final game state.
  */
 app.post('/api/explain', async (req, res) => {
   const { board, result: gameResult } = req.body;
