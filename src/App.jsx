@@ -36,7 +36,7 @@ function App() {
       const [winnerPlayer, pattern] = result;
       // Step 1: Immediately highlight squares
       setWinningLine(pattern);
-      
+
       // Step 2: Delay the win message and overlay by 1 second
       const timer = setTimeout(() => {
         setWinner(winnerPlayer);
@@ -46,7 +46,7 @@ function App() {
         else if (patternStr === '2,4,6') msg = `Player ${winnerPlayer} wins diagonally (top-right to bottom-left)`;
         setLastRotationMsg(msg);
       }, 1000);
-      
+
       return () => clearTimeout(timer);
     } else if (isBoardFull(board)) {
       setWinner('Draw');
@@ -109,7 +109,7 @@ function App() {
 
     setBoard(newBoard);
     setIsRotating(true);
-    
+
     let deg = 90;
     if (nextRotation === 'CCW') deg = -90;
     if (nextRotation === '180') deg = 180;
@@ -119,18 +119,18 @@ function App() {
       const rotated = rotateBoardStatic(newBoard, nextRotation);
       setBoard(rotated);
       setIsRotating(false);
-      setAiSuggestion(null); 
+      setAiSuggestion(null);
       setHoveredCell(null);
       setFuturePosition(null);
       setRotationDegrees(0);
-      
+
       const res = calculateWinner(rotated);
       const isSudden = Math.random() < 0.2 && !res;
 
       if (isSudden) {
         setSuddenMoveActive(true);
         // Extend the rotation lock for 1 second to let the player notice the event
-        setIsRotating(true); 
+        setIsRotating(true);
         setTimeout(() => {
           setSuddenMoveActive(false);
           setIsRotating(false);
@@ -141,20 +141,20 @@ function App() {
         setIsXNext(!isXNext);
         setIsRotating(false); // Enable moves immediately for normal turns
       }
-      
+
       setTimeLeft(6);
       pickNextRotation();
     }, 600);
   };
 
-  const handleMouseEnter = (r, c) => {};
-  const handleMouseLeave = () => {};
+  const handleMouseEnter = (r, c) => { };
+  const handleMouseLeave = () => { };
 
   const getInsightText = () => {
     if (!futurePosition) return null;
     const { r, c } = futurePosition;
     const msg = nextRotation === 'CW' ? '90° CW' : nextRotation === 'CCW' ? '90° CCW' : '180°';
-    
+
     if (r === 1 && c === 1) return `Rotation (${msg}) will move this to the Center!`;
     if ((r + c) % 2 === 0) return `Rotation (${msg}) will land this in a Corner.`;
     return `Rotation (${msg}) will shift this to an Edge position.`;
@@ -183,9 +183,9 @@ function App() {
   const calculateWinner = (grid) => {
     const squares = grid.flat();
     const patterns = [
-      [0,1,2], [3,4,5], [6,7,8],
-      [0,3,6], [1,4,7], [2,5,8],
-      [0,4,8], [2,4,6]
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
     ];
     for (let i = 0; i < patterns.length; i++) {
       const [a, b, c] = patterns[i];
@@ -252,9 +252,9 @@ function App() {
 
     setIsLoadingAi(true);
     setAiSuggestion(null);
-    setHoveredCell(null); 
+    setHoveredCell(null);
     setFuturePosition(null);
-    
+
     // Decrement immediately to prevent fast-click exploits
     setSuggestionsLeft(prev => Math.max(0, prev - 1));
 
@@ -324,26 +324,26 @@ function App() {
           >
             {board.map((row, rIdx) =>
               row.map((cell, cIdx) => {
-              const isFuture = futurePosition && futurePosition.r === rIdx && futurePosition.c === cIdx;
-              const isHovered = hoveredCell && hoveredCell.r === rIdx && hoveredCell.c === cIdx;
-              const isWinningSquare = winningLine && winningLine.some(idx => {
-                const r = Math.floor(idx / 3);
-                const c = idx % 3;
-                return r === rIdx && c === cIdx;
-              });
-              
-              return (
-                <div
-                  key={`${rIdx}-${cIdx}`}
-                  className={`square ${cell ? cell.toLowerCase() : ''} ${isFuture ? 'future-highlight' : ''} ${isHovered ? 'hover-active' : ''} ${isPreviewMode ? 'preview-cursor' : ''} ${isWinningSquare ? 'highlight' : ''}`}
-                  onClick={() => handleSquareClick(rIdx, cIdx)}
-                  onMouseEnter={() => handleMouseEnter(rIdx, cIdx)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {cell}
-                </div>
-              );
-            }))}
+                const isFuture = futurePosition && futurePosition.r === rIdx && futurePosition.c === cIdx;
+                const isHovered = hoveredCell && hoveredCell.r === rIdx && hoveredCell.c === cIdx;
+                const isWinningSquare = winningLine && winningLine.some(idx => {
+                  const r = Math.floor(idx / 3);
+                  const c = idx % 3;
+                  return r === rIdx && c === cIdx;
+                });
+
+                return (
+                  <div
+                    key={`${rIdx}-${cIdx}`}
+                    className={`square ${cell ? cell.toLowerCase() : ''} ${isFuture ? 'future-highlight' : ''} ${isHovered ? 'hover-active' : ''} ${isPreviewMode ? 'preview-cursor' : ''} ${isWinningSquare ? 'highlight' : ''}`}
+                    onClick={() => handleSquareClick(rIdx, cIdx)}
+                    onMouseEnter={() => handleMouseEnter(rIdx, cIdx)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {cell}
+                  </div>
+                );
+              }))}
           </div>
 
           {suddenMoveActive && (
@@ -394,7 +394,7 @@ function App() {
                     {isNoMercy ? 'Disabled in No Mercy' : (suggestionsLeft > 0 ? `Suggestions left: ${suggestionsLeft}` : 'No suggestions left')}
                   </div>
                 </div>
-             </>
+              </>
             )}
           </div>
         </div>
