@@ -1,16 +1,31 @@
-# React + Vite
+# Dynamic Tic Tac Toe 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reimagined version of Tic Tac Toe with dynamic and unpredictable gameplay mechanics.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🔄 Chaos Rotation — Board rotates after every move
+- ⚡ Sudden Move — Random bonus turn for players
+- ⭐ Smart Preview — Limited move preview system
+- 🤖 Suggest Move — AI-based suggestions (limited)
+- 🔥 No Mercy Mode — No assistance, pure skill
+- 🎯 Winning Highlight — Clear winning indication
 
-## React Compiler
+## 🧠 Concept
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project transforms a simple static game into a dynamic system where every move changes the future state of the board.
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React (Vite)
+- JavaScript
+- CSS
+
+
+##📌 Project Highlights
+Unique gameplay mechanics
+Focus on strategy and unpredictability
+Clean UI and smooth experience
+
+##👤 Author
+Krish Shah
