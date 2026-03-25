@@ -22,10 +22,10 @@ This project transforms a simple static game into a dynamic system where every m
 - CSS
 
 
-##📌 Project Highlights
+## 📌 Project Highlights
 Unique gameplay mechanics
 Focus on strategy and unpredictability
 Clean UI and smooth experience
 
-##👤 Author
+## 👤 Author
 Krish Shah
