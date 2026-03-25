@@ -5,6 +5,7 @@ import './App.css';
 // The API Key is now handled securely by the Node.js backend (server.js).
 
 function App() {
+  const API_URL = import.meta.env.VITE_API_URL || "https://dynamic-tic-tac-toe.onrender.com";
   const [board, setBoard] = useState([
     [null, null, null],
     [null, null, null],
@@ -259,7 +260,7 @@ function App() {
     setSuggestionsLeft(prev => Math.max(0, prev - 1));
 
     try {
-      const response = await fetch("http://localhost:5000/api/suggest", {
+      const response = await fetch(`${API_URL}/api/suggest`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ board, player: isXNext ? 'X' : 'O' })
@@ -275,7 +276,7 @@ function App() {
 
   const explainResult = async (res) => {
     try {
-      const response = await fetch("http://localhost:5000/api/explain", {
+      const response = await fetch(`${API_URL}/api/explain`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ board, result: res })
